@@ -1,43 +1,63 @@
 import osmnx as ox
+import itertools
 import folium
 
 def rutaFinal(rutaOptima, grafo):
     rutaFinalCompleta = []
-    for i in range(len(rutaOptima) - 1):
-        nodo_inicio = rutaOptima[i]
-        nodo_fin    = rutaOptima[i+1]
+    coords = []
 
-        # Calcular ruta más corta
-        rutaCorta = ox.shortest_path(grafo, nodo_inicio, nodo_fin, weight='travel_time')
-
-        if i == 0:
-            rutaFinalCompleta.extend(rutaCorta)
-        else:
-            rutaFinalCompleta.extend(rutaCorta[1:])
-
-    # Convertir nodos a coordenadas (lat, lon)
-    coords = [(grafo.nodes[n]['y'], grafo.nodes[n]['x']) for n in rutaFinalCompleta]
+    # Paleta de colores (se cicla si hay más tramos que colores)
+    colores = itertools.cycle([
+        "red", "blue", "green", "purple", "orange",
+        "darkred", "lightblue", "darkgreen", "pink", "cadetblue"
+    ])
 
     # Crear mapa centrado en el primer punto
-    m = folium.Map(location=coords[0], zoom_start=14)
+    primerNodo = rutaOptima[0]
+    mapa = folium.Map(location=[grafo.nodes[primerNodo]['y'], grafo.nodes[primerNodo]['x']], zoom_start=13)
 
-    # Dibujar la ruta en azul más gruesa
-    folium.PolyLine(coords, color="blue", weight=7, opacity=0.9).add_to(m)
+    # Dibujar tramo por tramo
+    for i in range(len(rutaOptima) - 1):
+        nodoInicio = rutaOptima[i]
+        nodoFin = rutaOptima[i+1]
 
-    # Marcar cada punto en orden
-    for i, nodo in enumerate(rutaOptima):
+        # Calcula la ruta más corta entre pares
+        rutaCorta = ox.shortest_path(grafo, nodoInicio, nodoFin, weight='travel_time')
+
+        # Convertir nodos en coordenadas
+        coordsTramo = [(grafo.nodes[n]['y'], grafo.nodes[n]['x']) for n in rutaCorta]
+
+        # Dibujar línea del tramo con color distinto
+        folium.PolyLine(
+            coordsTramo,
+            color=next(colores),
+            weight=5,
+            opacity=0.9
+        ).add_to(mapa)
+
+        rutaFinalCompleta.extend(rutaCorta)
+
+    # Marcar
+    nombre = "Ezequiel"
+    entrega = "auidifonos"
+    for nodo in rutaOptima:
         lat, lon = grafo.nodes[nodo]['y'], grafo.nodes[nodo]['x']
 
-        # Intentar obtener dirección del nodo
-        direccion = grafo.nodes[nodo].get("name", "Dirección desconocida")
+        popup_html = f"""
+        <b>Entrega {i+1}</b><br>
+        Cliente: {nombre}<br>
+        Producto: {entrega}
+        """     
 
-        # Marcador numerado + popup con dirección
         folium.Marker(
             location=(lat, lon),
-            popup=f"<b>Punto {i+1} 🪀</b><br>{direccion}",
+            popup=popup_html,
             icon=folium.DivIcon(html=f"""
-                <div style="font-size: 12pt; color: black">{i+1}</div>
+                <div style="text-align: center; white-space: nowrap;">
+                <div style="font-size: 20pt; color: black; line-height: 0;">📌</div>
+                <div style="font-size: 10pt; font-weight: bold; margin-top: 5px;">{i+1}</div>
+            </div>
             """)
-        ).add_to(m)
+        ).add_to(mapa)
 
-    return m
+    return mapa
