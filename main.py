@@ -18,30 +18,36 @@ puntos = [
     (19.485127, -99.118516),  # Basílica
 ]
 
+# Puntos a no más de 20 metros del Zócalo
 puntos2 = [
-    (19.435982, -99.154387),  # 1. Monumento a la Revolución
-    (19.433132, -99.134274),  # 2. Zócalo / Plaza de la Constitución
-    (19.485127, -99.118516),  # 3. Basílica de Guadalupe
-    (19.426214, -99.135246),  # 4. Palacio de Bellas Artes
-    (19.421695, -99.131102),  # 5. Templo Mayor
-    (19.431268, -99.179374),  # 6. Castillo de Chapultepec
-    (19.426831, -99.186646),  # 7. Museo Nacional de Antropología
-    (19.427027, -99.167735),  # 8. Ángel de la Independencia
-    (19.349633, -99.165207),  # 9. Museo Frida Kahlo (Casa Azul)
-    (19.435306, -99.133276),  # 10. Alameda Central
-    (19.412850, -99.168536),  # 11. Museo Soumaya
-    (19.317540, -99.130310),  # 12. Estadio Azteca
-    (19.432608, -99.133290),  # 13. Torre Latinoamericana
-    (19.351658, -99.141876),  # 14. Mercado de Coyoacán
-    (19.317926, -99.176412),  # 15. Ciudad Universitaria (UNAM)
-    (19.436159, -99.144933),  # 16. Kiosco Morisco
-    (19.418721, -99.172901),  # 17. Auditorio Nacional
-    (19.434380, -99.141430),  # 18. Hemiciclo a Juárez
-    (19.436048, -99.139627),  # 19. Museo de Memoria y Tolerancia
-    (19.333038, -99.184347),  # 20. Jardín Centenario (Coyoacán)
+    # En la plancha del Zócalo
+    (19.432608, -99.133290),  # 1. Centro del Zócalo
+    (19.432650, -99.133100),  # 2. Esquina Noreste del Zócalo
+    (19.432450, -99.133200),  # 3. Esquina Sureste del Zócalo
+    (19.432550, -99.133400),  # 4. Esquina Suroeste del Zócalo
+    (19.432750, -99.133300),  # 5. Esquina Noroeste del Zócalo
+    
+    # Alrededor del Zócalo
+    (19.432600, -99.133400),  # 6. Frente a la Suprema Corte
+    (19.432450, -99.133150),  # 7. Frente al Antiguo Palacio del Ayuntamiento
+    (19.432750, -99.133250),  # 8. Entrada del Palacio Nacional
+    (19.432850, -99.133100),  # 9. Entrada de la Catedral Metropolitana
+    (19.432900, -99.133000),  # 10. Campanario de la Catedral
+    
+    # Puntos adicionales cercanos
+    (19.432300, -99.133050),  # 11. Edificio de Gobierno (esquina 20 de Noviembre)
+    (19.432200, -99.133150),  # 12. Calle 5 de Febrero (lado sur)
+    (19.432800, -99.133450),  # 13. Calle 5 de Mayo (lado norte)
+    (19.433050, -99.133200),  # 14. Templo de San Felipe Neri (detrás de la Catedral)
+    (19.432100, -99.132950),  # 15. Esquina Pino Suárez
+    (19.432500, -99.132950),  # 16. Esquina Moneda
+    (19.432600, -99.132800),  # 17. Esquina Seminario (Templo Mayor)
+    (19.432750, -99.133000),  # 18. Calle Guatemala (detrás de la Catedral)
+    (19.432800, -99.133150),  # 19. Plaza de las Culturas (interior)
+    (19.432550, -99.133200),  # 20. Punto intermedio en la plancha
 ]
 
 Tinicio = time.time()
-ruta(inicio, puntos2, grafo)
+ruta(inicio, puntos, grafo)
 Tfin = time.time()
 print(f'No. Puntos {len(puntos) + 1} tardo : {Tfin-Tinicio}')
