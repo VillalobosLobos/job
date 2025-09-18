@@ -1,7 +1,7 @@
 idPunto,idCliente,nombreCliente,productos,latitud,longitud,tipoPunto
-31,C001,Juan Pérez,"Agua x2, Refresco x1, Pan x3",19.432608,-99.133290,1
-32,C002,María López,"Leche x1, Huevo x12, Jugo x2",19.432650,-99.133100,2
-33,C003,Carlos Ramírez,"Arroz x1, Frijoles x2, Aceite x1",19.432450,-99.133200,2
-34,C004,Ana Torres,"Cereal x1, Galletas x2, Yogurt x3",19.432550,-99.133400,2
-35,C005,Luis Fernández,"Papel Higiénico x4, Jabón x2, Pasta x1",19.432750,-99.133300,3
+31,0001,Juan Pérez,"Agua x2, Refresco x1, Pan x3",19.432608,-99.133290,1
+32,0002,María López,"Leche x1, Huevo x12, Jugo x2",19.432650,-99.133100,2
+33,0003,Carlos Ramírez,"Arroz x1, Frijoles x2, Aceite x1",19.432450,-99.133200,2
+34,0004,Ana Torres,"Cereal x1, Galletas x2, Yogurt x3",19.432550,-99.133400,2
+35,0005,Luis Fernández,"Papel Higiénico x4, Jabón x2, Pasta x1",19.432750,-99.133300,3
 

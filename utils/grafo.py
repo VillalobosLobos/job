@@ -151,7 +151,28 @@ def obtenerGrafo():
 	grafo = ox.load_graphml(filepath='data/zonaMetropolitana.graphml')
 	return grafo
 	
+def generarGrafoCDMX():
+	# Define the place you want to query.
+	place_name = "Ciudad de México, México"
 
+	print(f"Descargando el grafo de {place_name}...")
+	try:
+		G = ox.graph_from_place(
+			place_name, 
+			network_type="drive", 
+			simplify=True,
+			retain_all=False
+		)
+        
+		# Guardar el grafo en un archivo .graphml
+		filepath = "data/zonaMetropolitana.graphml"
+		ox.save_graphml(G, filepath=filepath)
+        
+		print(f"Grafo de CDMX guardado en: {filepath}")
+		return G
+	except Exception as e:
+		print(f"Ocurrió un error al generar el grafo: {e}")
+		return None
 
 
 

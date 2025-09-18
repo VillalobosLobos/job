@@ -1,17 +1,11 @@
 import utils.vehiculo as transporte
 import utils.info as csv
 import utils.grafo as g
+import utils.ruta as rut
 import osmnx as ox
 import os
 
 os.system("clear")
-
-calle = 'hola'
-numExt = ''
-numInt = ''
-colonia = ''
-alcalMun = ''
-cp = ''
 
 #Todo esto para obtener los puntos de inicio, fin y entrega de un CSV
 cont = csv.obtenerCSV("data/bd.csv") #Contenido del CSV
@@ -25,32 +19,25 @@ contTransporte = transporte.obtenerContenido("confVehiculo.json")
 modMotos = transporte.obtenerMotos(contTransporte)
 modAutos = transporte.obtenerAutos(contTransporte)
 
-#print(f'Inicio de la ruta:\n{inicio}\n\nFin de la ruta:\n{fin} \nPuntos a recorrer: {puntosEntrega}\n')
-
-print(f'Calle : ',end='')
-calle = input()
-print(f'numExt : ',end='')
-numExt = input()
-print(f'numInt : ',end='')
-numInt = input()
-print(f'Colonia : ',end='')
-colonia = input()
-print(f'alcaldia/municipio : ',end='')
-alcalMun = input()
-print(f'código postal : ',end='')
-cp = input()
-
-uso = f'{calle}, {numExt}, {numInt}, {colonia}, {alcalMun}, {cp}'
-
-csv.coordenadasLL("Canarios 313, Portales, Benito Juárez, 03300, Ciudad de México, México")
+#Para obtener el grafo
+#g.generarGrafoCDMX()
+grafo = g.obtenerGrafo()
 
 '''
+print(f'Inicio de la ruta:\n{inicio}\n\nFin de la ruta:\n{fin} \nPuntos a recorrer: {puntosEntrega}\n')
+
 print(f'\nEn que vehículo iniciara el recorrido?\n',end='')
 print(modMotos)
 print(modAutos)
 transporte.modificarStatus("confVehiculo.json", "A", "A001")
 '''
-#g.generarGrafo()
+nuevo = rut.crearNodosPuntos(grafo, cont)
+grafoProyectado = ox.project_graph(grafo)
+matriz = rut.crearMatrizDistancias(grafoProyectado, nuevo)
+ruta_optima = rut.resolverTSP(matriz)
+print("Orden óptimo de entrega:", ruta_optima)
+
+#print(cont[['nombreCliente', 'nodo']])
 
 #grafo = ox.load_graphml(filepath='data/zonaMetropolitana.graphml')
 #ox.plot_graph(grafo)
