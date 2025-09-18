@@ -13,7 +13,7 @@ import pandas as pd
 
 def obtenerFinInicio(cont):
     inicio = cont[cont["tipoPunto"] == 1].iloc[0]
-    fin = cont[cont["tipoPunto"] == 3].iloc[0]
+    fin = inicio#cont[cont["tipoPunto"] == 3].iloc[0]
     return [
         [float(inicio["latitud"]), float(inicio["longitud"])],
         [float(fin["latitud"]), float(fin["longitud"])]
