@@ -6,7 +6,7 @@ import os
 
 os.system("clear")
 
-calle = ''
+calle = 'hola'
 numExt = ''
 numInt = ''
 colonia = ''
