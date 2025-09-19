@@ -5,7 +5,7 @@
             "modelo": "Honda XRE 300",
             "rendimientoKML": 30.2,
             "capacidadTanqueL": 10,
-            "status": "libre"
+            "status": "ocupado"
         },
         {
             "id": "2",
@@ -21,7 +21,7 @@
             "modelo": "Mazda 3",
             "rendimientoKML": 12,
             "capacidadTanqueL": 13.5,
-            "status": "libre"
+            "status": "ocupado"
         },
         {
             "id": "2",

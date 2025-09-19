@@ -28,43 +28,39 @@ def obtenerAutos(cont):
 			salida.append([auto["id"], auto["modelo"], auto["rendimientoKML"]])
 	return salida
 
-
 def cambiarStatusVehiculo(ruta, tipo, idTransporte, nuevoStatus):
-    """
-    Cambia el status de un vehículo en el JSON.
+	# Cargar JSON
+	with open(ruta, "r", encoding="utf-8") as f:
+		data = json.load(f)
 
-    Parámetros:
-        ruta : str
-            Ruta del archivo JSON.
-        tipo : str
-            "motos" o "autos".
-        idTransporte : str o int
-            Id del vehículo a modificar.
-        nuevoStatus : str
-            Nuevo estado, por ejemplo "libre" u "ocupado".
-    """
-    # Cargar JSON
-    with open(ruta, "r", encoding="utf-8") as f:
-        data = json.load(f)
-    
-    # Buscar y modificar
-    encontrado = False
-    for vehiculo in data.get(tipo, []):
-        if str(vehiculo["id"]) == str(idTransporte):
-            vehiculo["status"] = nuevoStatus
-            encontrado = True
-            break
-    
-    if not encontrado:
-        print(f"No se encontró {tipo} con id {idTransporte}")
-        return False
-    
-    # Guardar JSON
-    with open(ruta, "w", encoding="utf-8") as f:
-        json.dump(data, f, indent=4, ensure_ascii=False)
-    
-    print(f"Status del {tipo} id={idTransporte} cambiado a '{nuevoStatus}'")
-    return True
+	# Buscar y modificar
+	encontrado = False
+	for vehiculo in data.get(tipo, []):
+		if str(vehiculo["id"]) == str(idTransporte):
+			vehiculo["status"] = nuevoStatus
+			encontrado = True
+			break
 
+	if not encontrado:
+		print(f"No se encontró {tipo} con id {idTransporte}")
+		return False
+
+	# Guardar JSON
+	with open(ruta, "w", encoding="utf-8") as f:
+		json.dump(data, f, indent=4, ensure_ascii=False)
+		return True
+
+def recuperarVehiculo(cont, ide, tipo):
+	if tipo == "M":
+		for moto in cont["motos"]:
+			if moto["id"] == ide:
+				return [moto["id"], moto["modelo"], moto["rendimientoKML"]]
+	else:
+		for auto in cont["autos"]:
+			if auto["id"] == ide:
+				return [auto["id"], auto["modelo"], auto["rendimientoKML"]]
+
+def consumoGasolina(distancia, rendimiento):
+	return distancia/rendimiento
 
 

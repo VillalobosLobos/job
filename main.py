@@ -20,11 +20,13 @@ print('Qué vehículo va a utilizar (MId): ', end='')
 mId = input()
 vehiculo = "autos" if mId[0] == 'A' else "motos"
 
-transporte.cambiarStatusVehiculo("confVehiculo.json", vehiculo, mId[1], "ocupado")
-
 print("\nNombre del repartidor: ", end='')
 nombreRepartidor = input()
 
+transporte.cambiarStatusVehiculo("confVehiculo.json", vehiculo, mId[1], "ocupado")
+infoTransporte = transporte.recuperarVehiculo(contenido, mId[1], mId[0])
+
+print(infoTransporte)
 
 #Todo esto para obtener los puntos de inicio, fin y entrega de un CSV
 cont = csv.obtenerCSV("data/bd.csv") #Contenido del CSV
@@ -47,7 +49,11 @@ print(f'nodo nuevo:\n{nuevo}')
 
 rutaCoords, rutaNodos = rut.rutaCompletaNodos(rutaOptima, grafoProyectado, nuevo)
 rutaCoords, transformador = rut.convertirRutaACoords(grafoProyectado, rutaNodos)
-print(f'Kilometros totales de la ruta: {rut.calcularDistanciaTotal(grafoProyectado, rutaNodos)}')
+
+distancia = rut.calcularDistanciaTotal(grafoProyectado, rutaNodos)
+litrosGastados = transporte.consumoGasolina(distancia, infoTransporte[2])
+print(f'Kilometros totales de la ruta: {distancia:.2f}')
+print(f'Litros de gasolina para está ruta: {litrosGastados:.2f}\n')
 
 m.dibujarRutaMapa(nuevo, grafoProyectado, rutaOptima, rutaNodos, transformador)
 
