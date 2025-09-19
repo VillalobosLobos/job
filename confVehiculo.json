@@ -21,14 +21,14 @@
             "modelo": "Mazda 3",
             "rendimientoKML": 12,
             "capacidadTanqueL": 13.5,
-            "status": "ocupado"
+            "status": "libre"
         },
         {
             "id": "2",
             "modelo": "Nissan Versa",
             "rendimientoKML": 15,
             "capacidadTanqueL": 14,
-            "status": "ocupado"
+            "status": "libre"
         }
     ]
 }

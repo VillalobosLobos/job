@@ -88,77 +88,53 @@ lugares = [
     "Cuautitlán Izcalli, Mexico"
 ]
 
-def descargarGrafo(nombre):
-    #Descarga el grafo de un municipio y lo guarda en disco
-	nombreArchivo = f"data/grafos_zmvm/{nombre.replace(',', '').replace(' ', '_')}.graphml"
-	if os.path.exists(nombreArchivo):
-		print(f"Ya existe: {nombre}")
-		return ox.load_graphml(nombreArchivo)
-	try:
-		print(f"Descargando: {nombre} ...")
-		grafo = ox.graph_from_place(nombre, network_type="drive", simplify=True)
-		ox.save_graphml(grafo, nombreArchivo)
-		print(f":D Guardado: {nombreArchivo}")
-		return grafo
-	except Exception as e:
-		print(f":( Error en {nombre}: {e}")
-		return None
-
-def procesarLote(lote, idx):
-    #Procesa un lote de municipios
-	print(f"\nProcesando lote {idx+1} ({len(lote)} lugares)")
-	GLote = None
-	for lugar in lote:
-		grafo = descargarGrafo(lugar)
-		if grafo is None:
-			continue
-		if GLote is None:
-			GLote = grafo
-		else:
-			GLote = nx.compose(GLote, grafo)
-		time.sleep(1)  # evitar saturar OSM
-	if GLote:
-		ox.save_graphml(GLote, f"data/grafos_zmvm/lote_{idx+1}.graphml")
-		print(f"Lote {idx+1} guardado")
-	return GLote
+import os
+import osmnx as ox
 
 def generarGrafo():
-	# Carpeta de guardado temporal
-	os.makedirs("data/grafos_zmvm", exist_ok=True)
-	tamLote = 10 #Para no gastar tanta RAM de 10 en 10
-	lotes = [lugares[i:i+tamLote] for i in range(0, len(lugares), tamLote)]
+    """
+    Descarga un grafo de carreteras de la Zona Metropolitana del Valle de México
+    usando graph_from_place y lo guarda en un archivo .graphml.
+    """
+    # Definir la zona a consultar
+    zona = "Zona Metropolitana del Valle de México, México"
 
-	#Procesar cada lote
-	grafosLotes = []
-	for i, lote in enumerate(lotes):
-		GLote = procesarLote(lote, i)
-		if GLote:
-			grafosLotes.append(GLote)
+    print(f"Descargando el grafo de {zona}...")
+    try:
+        G = ox.graph_from_place(
+            zona, 
+            network_type="drive", 
+            simplify=True,
+            retain_all=False  # Mantener solo el componente gigante
+        )
+        
+        # Crear carpeta si no existe
+        os.makedirs("data", exist_ok=True)
+        filepath = "data/zonaMetropolitana.graphml"
 
-	# Unir todos los lotes
-	GFinal = None
-	for grafo in grafosLotes:
-		if GFinal is None:
-			GFinal = grafo
-		else:
-			GFinal = nx.compose(GFinal, grafo)
+        # Guardar el grafo
+        ox.save_graphml(G, filepath=filepath)
+        print(f"Grafo de la Zona Metropolitana guardado en: {filepath}")
 
-	if GFinal:
-		ox.save_graphml(GFinal, "data/zonaMetropolitana.graphml")
-		return "\nGrafo final guardado: zonaMetropolitana.graphml"
+        return G
+
+    except Exception as e:
+        print(f"Ocurrió un error al generar el grafo: {e}")
+        return None
 
 def obtenerGrafo():
+	print("\nEstamos carganfo el grafo ....")
 	grafo = ox.load_graphml(filepath='data/zonaMetropolitana.graphml')
 	return grafo
 	
 def generarGrafoCDMX():
 	# Define the place you want to query.
-	place_name = "Ciudad de México, México"
+	zona = "Ciudad de México, México"
 
-	print(f"Descargando el grafo de {place_name}...")
+	print(f"Descargando el grafo de {zona}...")
 	try:
 		G = ox.graph_from_place(
-			place_name, 
+			zona, 
 			network_type="drive", 
 			simplify=True,
 			retain_all=False

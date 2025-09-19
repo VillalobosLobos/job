@@ -5,6 +5,7 @@ import utils.grafo as g
 import utils.mapa as m
 import networkx as nx
 import osmnx as ox
+import time
 import os
 
 os.system("clear")
@@ -26,7 +27,7 @@ nombreRepartidor = input()
 transporte.cambiarStatusVehiculo("confVehiculo.json", vehiculo, mId[1], "ocupado")
 infoTransporte = transporte.recuperarVehiculo(contenido, mId[1], mId[0])
 
-print(infoTransporte)
+#print(infoTransporte)
 
 #Todo esto para obtener los puntos de inicio, fin y entrega de un CSV
 cont = csv.obtenerCSV("data/bd.csv") #Contenido del CSV
@@ -37,7 +38,11 @@ puntosEntrega = csv.obtenerPuntos(cont) # Puntos de entrega(sin incluir fin e in
 
 #Para obtener el grafo
 #g.generarGrafoCDMX()
+#g.generarGrafo()
+
+inicio = time.perf_counter()
 grafo = g.obtenerGrafo()
+print('ye lo tenemos cargado')
 
 #Para obtener la ruta óptima
 nuevo = rut.crearNodosPuntos(grafo, cont) #Convierte coordenadas a nodos válidos para el grafo
@@ -45,15 +50,18 @@ grafoProyectado = ox.project_graph(grafo)
 matriz = rut.crearMatrizDistancias(grafoProyectado, nuevo)
 rutaOptima = rut.resolverTSP(matriz)
 
-print(f'nodo nuevo:\n{nuevo}')
+#print(f'nodo nuevo:\n{nuevo}')
 
 rutaCoords, rutaNodos = rut.rutaCompletaNodos(rutaOptima, grafoProyectado, nuevo)
 rutaCoords, transformador = rut.convertirRutaACoords(grafoProyectado, rutaNodos)
+fin = time.perf_counter()
 
 distancia = rut.calcularDistanciaTotal(grafoProyectado, rutaNodos)
 litrosGastados = transporte.consumoGasolina(distancia, infoTransporte[2])
 print(f'Kilometros totales de la ruta: {distancia:.2f}')
 print(f'Litros de gasolina para está ruta: {litrosGastados:.2f}\n')
+
+print(f"Tiempo de ejecución Para la ruta óptima con 5 puntos: {fin - inicio:.6f} segundos")
 
 m.dibujarRutaMapa(nuevo, grafoProyectado, rutaOptima, rutaNodos, transformador)
 
