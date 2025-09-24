@@ -1,0 +1,5 @@
+idCliente,nombre,calle,numExt,numInt,colonia,deleMuni,cp,pais,beneficio,numTelefono
+0001,"RR - Unidad de verificacion","Londres",66,50,"Juárez","Cuauhtémoc",06600,"México","Un oso",550192930
+0002,"Cesar Zamudio Onofre","Londres",66,50,"Juárez","Cuauhtémoc",06600,"México","Un play 5",550192930
+0003,"Wendy Michell Lopez Martinez","Bosque de Chapultepec I Secc",,,"Bosque de Chapultepec I Secc","Miguel Hidalgo",11580,"México","un xbox360",561231573
+0004,"Pedro Ramirez Inzunsa","Granjas México",,,"Granjas México","Iztacalco",08400,"México","Un play 2",5510329432
