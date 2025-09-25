@@ -65,11 +65,16 @@ def asignarRepartidorAVehiculo(idRepartidor, idVehiculo, rutaC, rutaM):
         return
 
     for v in cont:
-        if v["estatus"] == 'libre' and v["idConductor"] is None:
-            v["estatus"] = 'ocupado'
-            v["idConductor"] = idRepartidor
+        if v["id"] == idVehiculo:   # 👈 cambia esto
+            if v["estatus"] == 'libre' and v["idConductor"] is None:
+                v["estatus"] = 'ocupado'
+                v["idConductor"] = idRepartidor
+            else:
+                print(f"Vehículo {idVehiculo} ya ocupado")
             break
+
     subirContenido(ruta, data)
+
 
 ##################    Solo motos     ###############################
 
@@ -138,8 +143,6 @@ def resetVehiculos(ruta):
     subirContenido(ruta, cont)
 
     print(f"Todos los vehículos en {ruta} fueron liberados.")
-
-import json
 
 def obtenerVehiculosOcupados(path_carros, path_motos, path_repartidores):
     # Cargar datos desde los archivos JSON

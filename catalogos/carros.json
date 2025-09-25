@@ -4,8 +4,8 @@
       "id": 101,
       "modelo": "Nissan Versa 2022",
       "kmPorLitro": 15.5,
-      "estatus": "ocupado",
-      "idConductor": 2
+      "estatus": "libre",
+      "idConductor": null
     },
     {
       "id": 102,

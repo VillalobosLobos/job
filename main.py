@@ -12,19 +12,21 @@ puntos = cvs.obtenerDirecciones(contenido)
 rutaFinal = []
 nombres = []
 numeros = []	
+grafo = g.obtenerGrafoProyectado()
+
 
 repartidores = menu.primerMenu()
 noRepartidores = len(repartidores)
 print(repartidores)
 
-'''
+
 #g.generarGrafo()
 #[[19.4256407, -99.1636657], [19.4256407, -99.1636657], [19.4218546, -99.1871364], [19.402751, -99.098584]]
 coordenadas = dirCoord.direccionACoordenadas(puntos)
 
-ruta = g.rutasOptimas(coordenadas,noRepartidores)
+ruta = g.rutasOptimas(coordenadas,noRepartidores, grafo)
 
-#os.system('clear')
+os.system('clear')
 aux = 0
 for r in ruta:
 	for i in r:
@@ -33,7 +35,7 @@ for r in ruta:
 		rutaFinal.append(cvs.direccion(contenido.iloc[i]))
 
 	url = urlG.generarLinkGoogleMaps(rutaFinal)
-	distTiempo =dirCoord.calcularDistancia(rutaFinal)
+	distTiempo = dirCoord.calcularDistancia(rutaFinal)
 
 	print(msj.mensajeWhatssap(nombres, numeros, distTiempo, url, repartidores[aux]))
 	print("\n\n")
@@ -41,4 +43,4 @@ for r in ruta:
 	nombres = []
 	numeros = []
 	aux+=1
-'''
+

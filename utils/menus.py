@@ -37,23 +37,35 @@ def menuVehiculosDisponibles(licencias, repartidor):
     carros = catalogo.obtenerContenido(RUTA_CATALOGO_CARROS)['carros']
     motos = catalogo.obtenerContenido(RUTA_CATALOGO_MOTOS)['motos']
 
-    print(f'\nRepartidor elegido {repartidor['nombre']}\n')
-    if licencias[1] == True:
-        print('\nCarros dispobibles:')
-        for carro in catalogo.obtenerCarrosDisponibles(carros):
-            print(f'- (Id = {carro['id']}) {carro['modelo']}')
-        return True
+    print(f'\nRepartidor elegido {repartidor["nombre"]}\n')
+
+    opciones = []  # lista de vehículos que sí puede manejar
+
+    if licencias[1]:  # carro
+        disponibles = catalogo.obtenerCarrosDisponibles(carros)
+        if disponibles:
+            print('\nCarros disponibles:')
+            for carro in disponibles:
+                print(f'- (Id = {carro["id"]}) {carro["modelo"]}')
+                opciones.append(carro["id"])
+        else:
+            print("\nNo hay carros disponibles ahora mismo")
     else:
         print('\nNo cuenta con licencia para manejar carro')
 
-    if licencias[0] == True:
-        print('\nMotos disponibles:')
-        for moto in catalogo.obtenerMotosDisponibles(motos):
-            print(f'- (Id = {moto['id']}) {moto['modelo']}')
-        return True
+    if licencias[0]:  # moto
+        disponibles = catalogo.obtenerMotosDisponibles(motos)
+        if disponibles:
+            print('\nMotos disponibles:')
+            for moto in disponibles:
+                print(f'- (Id = {moto["id"]}) {moto["modelo"]}')
+                opciones.append(moto["id"])
+        else:
+            print("\nNo hay motos disponibles ahora mismo")
     else:
         print('\nNo cuenta con licencia para manejar moto')
-        return False
+
+    return opciones  # devuelves la lista de IDs disponibles
 
 def menuRepartidores():
     os.system('clear')

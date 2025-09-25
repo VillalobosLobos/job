@@ -105,8 +105,8 @@ def agruparEntregasIndices(coordenadas, numRepartidores):
     return rutas
 
 
-def rutasOptimas(coordenadas, numRepartidores):
-    grafo = obtenerGrafoProyectado()
+def rutasOptimas(coordenadas, numRepartidores, grafo):
+    #grafo = obtenerGrafoProyectado()
     
     rutas_cluster = agruparEntregasIndices(coordenadas, numRepartidores)
     rutas_finales = []
