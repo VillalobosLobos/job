@@ -1,0 +1,2 @@
+sudo -u postgres psql
+postgres=# \i '/home/ezequiel/Documentos/delivery/bd.sql'
