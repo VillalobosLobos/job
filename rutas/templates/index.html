@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block title %}Estado de entrega{% endblock %}
+
+{% block content %}
+
+<h2 class="mb-4">Estado de entrega</h2>
+<p>Aquí podrás observar las entregas pendientes y cambiar su estado.</p>
+
+<div style="max-height: 600px; overflow-y: auto; border: 1px solid #ccc; padding: 15px; border-radius: 8px;">
+
+
+    {% for entrega in entregas_pendientes%}
+    <div class="mb-3 p-3 border rounded bg-light d-flex justify-content-between align-items-center">
+        <div>
+            <strong>Nombre del cliente:</strong> {{ entrega.cliente }}<br>
+            <strong>Tipo de entrega:</strong> {{ entrega.tipo_entrega }}
+        </div>
+        <div style="min-width: 180px;">
+            <select class="form-select" >
+                <option selected>Pendiente</option>
+                <option>Entregada</option>
+                <option>Estática</option>
+            </select>
+        </div>
+    </div>
+    {% empty %}
+    <p>No hay entregas pendientes.</p>
+    {% endfor %}
+
+
+</div>
+
+{% endblock %}

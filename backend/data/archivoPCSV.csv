@@ -1,0 +1,15 @@
+idCliente,nombre,calle,numExt,numInt,colonia,deleMuni,cp,pais,beneficio,numTelefono
+0001,"RR Conecta- Unidad de verificacion","Londres",66,50,"Juárez","Cuauhtémoc",06600,"México","Un oso",550192930
+0002,"Cesar Zamudio Onofre","Argelia","49","","Romero Rubio","Venustiano Carranza","15400","México","Un play 5",550192930
+0003,"Wendy Michell Lopez Martinez","Bosque de Chapultepec I Secc",,,"Bosque de Chapultepec I Secc","Miguel Hidalgo",11580,"México","un xbox360",561231573
+0004,"Pedro Ramirez Inzunsa","Granjas México",,,"Granjas México","Iztacalco",08400,"México","Un play 2",5510329432
+0005,"Ezequiel","Sergio Mendez Arceo","011","","","Ecatepec de Morelos","55020","México","Rosas",324134252
+0007,"Carlos","Federico Gómez","","","San Juan","Zumpango de Ocampo","55600","México","Un play 2",5510329432
+0008,"Angel","Calle Calkini","","","Lomas de Padierna","Ciudad de México","14240","México","Un play 2",5510329432
+0009,"Paco","Av. bosques del estado de México","s/n","","sección bosques","Héroes Tecámac","55763","México","Un play 2",5510329432
+0010,"Bosque de los Abedules","Manzana 89 Lote 19-c4","","Los Heroes Tecamac","Ciudad de México","55764","México","Un play 2",5510329432
+0011,"Calle Zapotecas","","","Cd Azteca 1ra Secc","Ecatepec de Morelos","55120","México","Un play 2",5510329432
+0012,"C pascual Morales","","","Diaz Ordaz","Ecatepec de Morelos","55270","México","Un play 2",5510329432
+0013,"Agricultura Esquina Insurgentes","16","","La Palma 1","Ecatepec de Morelos","55039","México","Un play 2",5510329432
+0014,"Av. José López Portillo","Manzana 028","","Guadalupe Victoria","Ecatepec de Morelos","55010","México","Un play 2",5510329432
+

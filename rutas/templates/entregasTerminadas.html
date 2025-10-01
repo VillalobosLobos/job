@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% block title %}Inicio{% endblock %}
+{% block content %}
+<h2 class="mb-4">Entregas terminadas</h2>
+<p>Aquí podrás observar las entregas que ya fueron terminadas.</p>
+
+<div style="max-height: 600px; overflow-y: auto; border: 1px solid #ccc; padding: 15px; border-radius: 8px;">
+    <div class="mb-3 p-3 border rounded bg-light d-flex justify-content-between align-items-center">
+        <div>
+            <strong>Nombre del cliente:</strong> Cesar Osvaldo Zamudio Onofre<br>
+            <strong>Tipo de entrega:</strong> masivo
+        </div>
+        <div style="min-width: 180px;">
+            <div class="bg-success text-white text-center py-2 px-3 rounded">
+                Terminado
+            </div>
+        </div>
+    </div>
+
+    <div class="mb-3 p-3 border rounded bg-light d-flex justify-content-between align-items-center">
+        <div>
+            <strong>Nombre del cliente:</strong> Pedro Ramirez Insunza<br>
+            <strong>Tipo de entrega:</strong> campo
+        </div>
+        <div style="min-width: 180px;">
+            <div class="bg-success text-white text-center py-2 px-3 rounded">
+                Terminado
+            </div>
+        </div>
+    </div>
+
+    <div class="mb-3 p-3 border rounded bg-light d-flex justify-content-between align-items-center">
+        <div>
+            <strong>Nombre del cliente:</strong> Wendy Michell Martinez Lopez<br>
+            <strong>Tipo de entrega:</strong> campo
+        </div>
+        <div style="min-width: 180px;">
+            <div class="bg-success text-white text-center py-2 px-3 rounded">
+                Terminado
+            </div>
+        </div>
+    </div>
+
+    <div class="mb-3 p-3 border rounded bg-light d-flex justify-content-between align-items-center">
+        <div>
+            <strong>Nombre del cliente:</strong> María Magdalena Sánchez Meneses<br>
+            <strong>Tipo de entrega:</strong> masivo
+        </div>
+        <div style="min-width: 180px;">
+            <div class="bg-success text-white text-center py-2 px-3 rounded">
+                Terminado
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
