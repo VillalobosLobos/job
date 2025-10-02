@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block title %}Inicio{% endblock %}
+{% block content %}
+<h2 class="mb-4">Entregas terminadas</h2>
+<p>Aquí podrás observar las entregas que ya fueron terminadas.</p>
+
+<div style="max-height: 600px; overflow-y: auto; border: 1px solid #ccc; padding: 15px; border-radius: 8px;">
+
+    {% for entrega in entregas_terminadas%}
+    <div class="mb-3 p-3 border rounded bg-light d-flex justify-content-between align-items-center">
+        <div>
+            <strong>Nombre del cliente:</strong> {{ entrega.cliente }}<br>
+            <strong>Tipo de entrega:</strong> {{ entrega.tipo_entrega }}
+        </div>
+        <div style="min-width: 180px;">
+            <div class="bg-success text-white text-center py-2 px-3 rounded">
+                Terminado
+            </div>
+        </div>
+    </div>
+    {% empty %}
+    <p>No hay entregas terminadas.</p>
+    {% endfor %}
+
+</div>
+{% endblock %}
