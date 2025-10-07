@@ -1,0 +1,42 @@
+{% extends 'layouts/base.html' %}
+{% block content %}
+
+
+<form action="" method="POST">
+    {% csrf_token %}
+    <h1>Rutas por hacer</h1>
+
+    <p>Información del cliente</p>
+    {{ formulario_cliente }}
+
+    <br>
+
+    <p>Dirección</p>
+    {{ formulario_direccion }}
+
+    <br>
+
+    <p>Beneficios</p>
+    {{ formulario_entrega }}
+
+    <button> Guardar entrega</button>
+</form>
+
+<!-- Para ver las entregas pendientes -->
+ <h1>Entregas por hacer</h1>
+{% for entrega in reagendada %}
+    <p>Cliente : {{ entrega.id_cliente.nombre }}</p>
+    <p>Tipo de entrega : {{ entrega.tipo_de_entrega }}</p>
+
+    <form action="/editar_entrega/{{ entrega.id }}" method="GET" style="display:inline;">
+        <button type="submit">Actualizar</button>
+    </form>
+
+    <form action="/eliminar_entrega/{{ entrega.id }}" method="POST" style="display:inline;">
+        {% csrf_token %}
+        <button type="submit" onclick="return confirm('¿Estás seguro de eliminar esta entrega?')">Eliminar</button>
+    </form>
+{% endfor %}
+
+
+{% endblock %}

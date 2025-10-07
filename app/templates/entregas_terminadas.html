@@ -1,0 +1,14 @@
+{% extends 'layouts/base.html' %}
+{% block content %}
+
+
+<h1>Entregas terminadas</h1>
+
+{% for entrega in terminadas %}
+    <h1>id: {{ entrega.id }} , nombre : {{ entrega.id_cliente.nombre }}</h1>
+{% empty %}
+    <p>No hay entregas terminadas.</p>
+{% endfor %}
+
+
+{% endblock %}

@@ -1,0 +1,13 @@
+{% extends 'layouts/base.html' %}
+{% block content %}
+
+
+<h1>Estado de entrega</h1>
+
+{% for e in pendientes %}
+    <h1>id: {{ e.id }} , nombre : {{ e.id_cliente.nombre }}</h1>
+{% empty %}
+    <p>No hay entregas pendientes.</p>
+{% endfor %}
+
+{% endblock %}
