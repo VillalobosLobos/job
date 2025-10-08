@@ -17,7 +17,7 @@ class Entregas(models.Model):
     id_cliente = models.ForeignKey(Clientes, on_delete = models.CASCADE)
     id_direccion = models.ForeignKey(Direcciones, on_delete = models.CASCADE)
     id_repartidor = models.ForeignKey(Repartidores, on_delete = models.SET_NULL, blank = True, null = True)
-    id_vehiculo = models.ForeignKey(Vehiculos, on_delete = models.CASCADE)
+    id_vehiculo = models.ForeignKey(Vehiculos, on_delete = models.SET_NULL, blank = True, null = True)
     tipo_de_entrega = models.CharField(
         max_length = 10,
         choices = Tipos_de_entregas.choices,

@@ -1,0 +1,51 @@
+from app.models import Repartidores, Licencias_de_repartidor, Tipos_de_licencias
+
+repartidor1 = Repartidores.objects.create(
+    nombre="Luis Martínez",
+    telefono="+525512345678",
+    activo=True
+)
+
+licencia1 = Licencias_de_repartidor.objects.create(
+    id_repartidor=repartidor1,
+    tipo_de_licencia=Tipos_de_licencias.LICENCIA_PARA_MOTO
+)
+
+licencia11 = Licencias_de_repartidor.objects.create(
+    id_repartidor=repartidor1,
+    tipo_de_licencia=Tipos_de_licencias.LICENCIA_PARA_CARRO
+)
+
+repartidor2 = Repartidores.objects.create(
+    nombre="Juan Martínez",
+    telefono="+525592345678",
+    activo=True
+)
+
+licencia2 = Licencias_de_repartidor.objects.create(
+    id_repartidor=repartidor2,
+    tipo_de_licencia=Tipos_de_licencias.LICENCIA_PARA_MOTO
+)
+
+licencia22 = Licencias_de_repartidor.objects.create(
+    id_repartidor=repartidor2,
+    tipo_de_licencia=Tipos_de_licencias.LICENCIA_PARA_CARRO
+)
+
+repartidor3 = Repartidores.objects.create(
+    nombre="Pablo Martínez",
+    telefono="+525512335978",
+    activo=True
+)
+
+licencia3 = Licencias_de_repartidor.objects.create(
+    id_repartidor=repartidor3,
+    tipo_de_licencia=Tipos_de_licencias.LICENCIA_PARA_MOTO
+)
+
+licencia33 = Licencias_de_repartidor.objects.create(
+    id_repartidor=repartidor3,
+    tipo_de_licencia=Tipos_de_licencias.LICENCIA_PARA_CARRO
+)
+
+
