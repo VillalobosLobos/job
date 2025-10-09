@@ -1,24 +1,32 @@
-from app.models import Repartidores, Vehiculos, Tipos_de_vehiculos,Estatus_de_vehiculos
+from app.models import Repartidores, Vehiculos, Tipos_de_vehiculos, Estatus_de_vehiculos
 
-repartidor1 = Repartidores.objects.get(id=1)
-repartidor2 = Repartidores.objects.get(id=2)
-repartidor3 = Repartidores.objects.get(id=3)
+# Eliminar vehículos antes de crear nuevos
+Vehiculos.objects.all().delete()
 
+# Obtener repartidores por nombre (más seguro que por ID)
+repartidor1 = Repartidores.objects.get(nombre="Luis Martínez")
+repartidor2 = Repartidores.objects.get(nombre="Juan Martínez")
+repartidor3 = Repartidores.objects.get(nombre="Pablo Martínez")
 
-vehiculo1 = Vehiculos.objects.create(
-    tipo_de_vehiculo=Tipos_de_vehiculos.MOTO, 
+# Crear vehículo para repartidor 1
+Vehiculos.objects.create(
+    tipo_de_vehiculo=Tipos_de_vehiculos.MOTO,
     modelo='Yamaha YBR 125',
     km_por_litro=35,
     id_repartidor=repartidor1
 )
 
-vehiculo2 = Vehiculos.objects.create( 
+# Crear vehículo para repartidor 2
+Vehiculos.objects.create(
+    tipo_de_vehiculo=Tipos_de_vehiculos.CARRO,
     modelo='Aveo',
     km_por_litro=35,
     id_repartidor=repartidor2
 )
 
-vehiculo3 = Vehiculos.objects.create( 
+# Crear vehículo para repartidor 3
+Vehiculos.objects.create(
+    tipo_de_vehiculo=Tipos_de_vehiculos.CARRO,
     modelo='Tiida',
     km_por_litro=35,
     id_repartidor=repartidor3

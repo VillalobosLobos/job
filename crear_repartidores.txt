@@ -1,51 +1,32 @@
 from app.models import Repartidores, Licencias_de_repartidor, Tipos_de_licencias
 
+# Eliminar primero las licencias y luego los repartidores
+Licencias_de_repartidor.objects.all().delete()
+Repartidores.objects.all().delete()
+
+# Crear repartidor 1
 repartidor1 = Repartidores.objects.create(
     nombre="Luis Martínez",
     telefono="+525512345678",
     activo=True
 )
+Licencias_de_repartidor.objects.create(id_repartidor=repartidor1, tipo_de_licencia=Tipos_de_licencias.LICENCIA_PARA_MOTO)
+Licencias_de_repartidor.objects.create(id_repartidor=repartidor1, tipo_de_licencia=Tipos_de_licencias.LICENCIA_PARA_CARRO)
 
-licencia1 = Licencias_de_repartidor.objects.create(
-    id_repartidor=repartidor1,
-    tipo_de_licencia=Tipos_de_licencias.LICENCIA_PARA_MOTO
-)
-
-licencia11 = Licencias_de_repartidor.objects.create(
-    id_repartidor=repartidor1,
-    tipo_de_licencia=Tipos_de_licencias.LICENCIA_PARA_CARRO
-)
-
+# Crear repartidor 2
 repartidor2 = Repartidores.objects.create(
     nombre="Juan Martínez",
     telefono="+525592345678",
     activo=True
 )
+Licencias_de_repartidor.objects.create(id_repartidor=repartidor2, tipo_de_licencia=Tipos_de_licencias.LICENCIA_PARA_MOTO)
+Licencias_de_repartidor.objects.create(id_repartidor=repartidor2, tipo_de_licencia=Tipos_de_licencias.LICENCIA_PARA_CARRO)
 
-licencia2 = Licencias_de_repartidor.objects.create(
-    id_repartidor=repartidor2,
-    tipo_de_licencia=Tipos_de_licencias.LICENCIA_PARA_MOTO
-)
-
-licencia22 = Licencias_de_repartidor.objects.create(
-    id_repartidor=repartidor2,
-    tipo_de_licencia=Tipos_de_licencias.LICENCIA_PARA_CARRO
-)
-
+# Crear repartidor 3
 repartidor3 = Repartidores.objects.create(
     nombre="Pablo Martínez",
     telefono="+525512335978",
     activo=True
 )
-
-licencia3 = Licencias_de_repartidor.objects.create(
-    id_repartidor=repartidor3,
-    tipo_de_licencia=Tipos_de_licencias.LICENCIA_PARA_MOTO
-)
-
-licencia33 = Licencias_de_repartidor.objects.create(
-    id_repartidor=repartidor3,
-    tipo_de_licencia=Tipos_de_licencias.LICENCIA_PARA_CARRO
-)
-
-
+Licencias_de_repartidor.objects.create(id_repartidor=repartidor3, tipo_de_licencia=Tipos_de_licencias.LICENCIA_PARA_MOTO)
+Licencias_de_repartidor.objects.create(id_repartidor=repartidor3, tipo_de_licencia=Tipos_de_licencias.LICENCIA_PARA_CARRO)
